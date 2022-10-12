@@ -12,12 +12,13 @@ import { createLocalNatsComponent } from '@well-known-components/nats-component/
 import { createRpcServer } from '@dcl/rpc'
 import { createServiceDiscoveryComponent } from './adapters/service-discovery'
 import { createRealmComponent } from './adapters/realm'
-import { catalystRegistryForProvider } from '@dcl/catalyst-contracts'
+import { catalystRegistryForProvider } from '@zqbflynn/catalyst-contracts'
 import { createStatusComponent } from './adapters/status'
 import { observeBuildInfo } from './logic/build-info'
 import { commsFixedAdapter, ICommsModeComponent } from './adapters/comms-fixed-adapter'
 import { commsArchipelago } from './adapters/comms-archipelago'
 import { commsLighthouse } from './adapters/comms-lighthouse'
+import { networks } from '@zqbflynn/catalyst-node-commons'
 
 // Initialize all the components of the app
 export async function initComponents(): Promise<AppComponents> {
@@ -49,10 +50,20 @@ export async function initComponents(): Promise<AppComponents> {
 
   const nats = hasNats ? await createNatsComponent({ config, logs }) : await createLocalNatsComponent()
   const serviceDiscovery = await createServiceDiscoveryComponent({ nats, logs, config })
-  const ethereumProvider = new HTTPProvider(
-    `https://rpc.decentraland.org/${encodeURIComponent(ethNetwork)}?project=explorer-bff`,
-    { fetch: fetch.fetch }
-  )
+  /*
+   * author: Flynn Jun
+   * function: 自定义获取rpc的ip
+   * date: 2022/10/11
+   * */
+
+  const network = networks[ethNetwork.valueOf() as keyof typeof networks]
+  const url = network.http
+  const ethereumProvider = new HTTPProvider(url, { fetch: fetch.fetch })
+
+  // const ethereumProvider = new HTTPProvider(
+  //   `https://rpc.decentraland.org/${encodeURIComponent(ethNetwork)}?project=explorer-bff`,
+  //   { fetch: fetch.fetch }
+  // )
 
   const contract = await catalystRegistryForProvider(ethereumProvider)
   const realm = await createRealmComponent({ config, logs, fetch, contract })

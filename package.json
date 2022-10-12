@@ -1,5 +1,5 @@
 {
-  "name": "@dcl/explorer-bff",
+  "name": "@zqbflynn/explorer-bff",
   "scripts": {
     "build": "make build",
     "start": "node --trace-warnings --abort-on-uncaught-exception --unhandled-rejections=strict dist/index.js",
@@ -26,7 +26,6 @@
     "protocVersion": "21.6"
   },
   "dependencies": {
-    "@dcl/catalyst-contracts": "^3.0.0",
     "@dcl/crypto": "^3.2.0",
     "@dcl/protocol": "^1.0.0-3205348640.commit-bd227bf",
     "@dcl/rpc": "^1.0.3",
@@ -39,6 +38,8 @@
     "@well-known-components/metrics": "^2.0.0",
     "@well-known-components/nats-component": "^2.0.0",
     "@well-known-components/pushable-channel": "^1.0.3",
+    "@zqbflynn/catalyst-contracts": "^3.0.1",
+    "@zqbflynn/catalyst-node-commons": "^0.1.0",
     "mitt": "^3.0.0",
     "ts-proto": "^1.125.0",
     "ws": "^8.8.1"
