@@ -37,7 +37,9 @@ export async function createStatusComponent(
   const lambdasUrl = new URL(await config.requireString('LAMBDAS_URL'))
   const contentUrl = new URL(await config.requireString('CONTENT_URL'))
   const lighthouseUrl = new URL(await config.requireString('LIGHTHOUSE_URL'))
-
+  console.log('===================>lambdasUrl: ', lambdasUrl)
+  console.log('===================>contentUrl: ', contentUrl)
+  console.log('===================>lighthouseUrl: ', lighthouseUrl)
   const fetchJson = async (baseURL: URL, path: string) => {
     let url = baseURL.toString()
     if (!url.endsWith('/')) {
