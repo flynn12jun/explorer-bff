@@ -58,6 +58,7 @@ export async function initComponents(): Promise<AppComponents> {
 
   const network = networks[ethNetwork.valueOf() as keyof typeof networks]
   const url = network.http
+  console.log('=============> 节点url: ', url)
   const ethereumProvider = new HTTPProvider(url, { fetch: fetch.fetch })
 
   // const ethereumProvider = new HTTPProvider(
