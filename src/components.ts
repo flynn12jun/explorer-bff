@@ -18,7 +18,7 @@ import { observeBuildInfo } from './logic/build-info'
 import { commsFixedAdapter, ICommsModeComponent } from './adapters/comms-fixed-adapter'
 import { commsArchipelago } from './adapters/comms-archipelago'
 import { commsLighthouse } from './adapters/comms-lighthouse'
-import { networks } from '@zqbflynn/catalyst-node-commons'
+import { getNetwork } from '@zqbflynn/catalyst-node-commons'
 
 // Initialize all the components of the app
 export async function initComponents(): Promise<AppComponents> {
@@ -56,7 +56,7 @@ export async function initComponents(): Promise<AppComponents> {
    * date: 2022/10/11
    * */
 
-  const network = networks[ethNetwork.valueOf() as keyof typeof networks]
+  const network = getNetwork(ethNetwork)
   const url = network.http
   console.log('=============> 节点url: ', url)
   const ethereumProvider = new HTTPProvider(url, { fetch: fetch.fetch })
@@ -74,7 +74,7 @@ export async function initComponents(): Promise<AppComponents> {
   await observeBuildInfo({ config, metrics })
 
   let comms: ICommsModeComponent
-
+  console.log('=====bff====>当前COMMS_MODE is ', config.getString('COMMS_MODE'))
   switch ((await config.getString('COMMS_MODE')) || 'archipelago') {
     case 'archipelago':
       comms = await commsArchipelago({ serviceDiscovery })

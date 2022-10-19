@@ -38,8 +38,8 @@
     "@well-known-components/metrics": "^2.0.0",
     "@well-known-components/nats-component": "^2.0.0",
     "@well-known-components/pushable-channel": "^1.0.3",
-    "@zqbflynn/catalyst-contracts": "^3.0.1",
-    "@zqbflynn/catalyst-node-commons": "^0.1.0",
+    "@zqbflynn/catalyst-contracts": "^3.0.4",
+    "@zqbflynn/catalyst-node-commons": "^0.1.2",
     "mitt": "^3.0.0",
     "ts-proto": "^1.125.0",
     "ws": "^8.8.1"
