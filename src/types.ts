@@ -17,7 +17,7 @@ import { IStatusComponent } from './adapters/status'
 import { PeerTopicSubscriptionResultElem, SystemTopicSubscriptionResultElem } from './protocol/bff/topics-service'
 import { ICommsModeComponent } from './adapters/comms-fixed-adapter'
 
-export const DEFAULT_ETH_NETWORK = 'zqb'
+export const DEFAULT_ETH_NETWORK = 'mainnet'
 
 export type GlobalContext = {
   components: BaseComponents

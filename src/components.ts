@@ -28,6 +28,7 @@ export async function initComponents(): Promise<AppComponents> {
   const config = await createDotEnvConfigComponent({ path: configs })
 
   const ethNetwork = (await config.getString('ETH_NETWORK')) ?? DEFAULT_ETH_NETWORK
+  console.log('=====> [Test bff] ethNetwork: ', ethNetwork)
   const metrics = await createMetricsComponent(metricDeclarations, { config })
   const logs = await createLogComponent({ metrics })
   const ws = await createWsComponent({ logs })
